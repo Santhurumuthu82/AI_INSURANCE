@@ -8,8 +8,8 @@ from dotenv import load_dotenv
 load_dotenv()
 #nltk.download("punkt")
 
-if os.getenv('THIRD_AI_KEY') :
-    licensing.activate("THIR_AI_KEY")
+
+licensing.activate(os.getenv('THIRD_AI_KEY'))
 db = ndb.NeuralDB()
 insertable_docs = []
 #streamlit run D.py
@@ -21,8 +21,8 @@ for file in doc_files:
     insertable_docs.append(doc)
 db.insert(insertable_docs, train=False)
 
-if "OPENAI_API_KEY" not in os.environ:
-    os.environ["OPENAI_API_KEY"] =os.getenv('OPEN_AI_KEY')
+
+os.environ["OPENAI_API_KEY"] =os.getenv('OPEN_AI_KEY')
 
 from openai import OpenAI
 def generate_answers(query, references):
